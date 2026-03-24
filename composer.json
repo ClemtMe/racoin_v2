@@ -16,14 +16,17 @@
     },
     "config": {
         "allow-plugins": {
-            "kylekatarnls/update-helper": true
+            "kylekatarnls/update-helper": true,
+            "phpstan/extension-installer": true
         }
     },
     "require-dev": {
         "phpunit/phpunit": "^11.5",
-        "mockery/mockery": "^1.6"
+        "mockery/mockery": "^1.6",
+        "phpstan/phpstan": "^2.1"
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "phpunit",
+        "phpstan": "phpstan analyse"
     }
 }

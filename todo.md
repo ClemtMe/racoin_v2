@@ -1,0 +1,6 @@
+- Installer un linter avec une baseline
+- Mettre à jour php et slim
+- Mettre les sources dans un dossier src
+- Renommer les fichiers
+- Organiser le code avec des services pour moins de responsabilité controller
+- Mettre le fichier index dans le dossier public et mettre les routes ailleur

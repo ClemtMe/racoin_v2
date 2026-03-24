@@ -1,0 +1,247 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Access to an undefined property model\\ApiKey\:\:\$id_apikey\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/KeyGenerator.php
+
+		-
+			message: '#^Access to an undefined property model\\ApiKey\:\:\$name_key\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/KeyGenerator.php
+
+		-
+			message: '#^Call to an undefined static method model\\Annonce\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/Search.php
+
+		-
+			message: '#^Call to an undefined static method model\\Categorie\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/Search.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonce\:\:\$date\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonce\:\:\$description\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonce\:\:\$id_categorie\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonce\:\:\$id_departement\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonce\:\:\$mdp\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonce\:\:\$prix\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonce\:\:\$titre\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonce\:\:\$ville\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonceur\:\:\$email\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonceur\:\:\$nom_annonceur\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Access to an undefined property model\\Annonceur\:\:\$telephone\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/addItem.php
+
+		-
+			message: '#^Call to an undefined static method model\\Annonceur\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/getCategorie.php
+
+		-
+			message: '#^Call to an undefined static method model\\Categorie\:\:find\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/getCategorie.php
+
+		-
+			message: '#^Call to an undefined static method model\\Categorie\:\:orderBy\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/getCategorie.php
+
+		-
+			message: '#^Call to an undefined static method model\\Photo\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/getCategorie.php
+
+		-
+			message: '#^Call to an undefined static method model\\Photo\:\:where\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/getCategorie.php
+
+		-
+			message: '#^Call to an undefined static method model\\Departement\:\:orderBy\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/getDepartment.php
+
+		-
+			message: '#^Call to an undefined static method model\\Annonceur\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/index.php
+
+		-
+			message: '#^Call to an undefined static method model\\Photo\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/index.php
+
+		-
+			message: '#^Call to an undefined static method model\\Photo\:\:where\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/index.php
+
+		-
+			message: '#^Access to an undefined property \$this\(controller\\item\)\:\:\$annonceur\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/item.php
+
+		-
+			message: '#^Access to an undefined property \$this\(controller\\item\)\:\:\$departement\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/item.php
+
+		-
+			message: '#^Access to an undefined property \$this\(controller\\item\)\:\:\$photo\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/item.php
+
+		-
+			message: '#^Access to an undefined property controller\\item\:\:\$annonce\.$#'
+			identifier: property.notFound
+			count: 6
+			path: controller/item.php
+
+		-
+			message: '#^Access to an undefined property controller\\item\:\:\$annonceur\.$#'
+			identifier: property.notFound
+			count: 2
+			path: controller/item.php
+
+		-
+			message: '#^Access to an undefined property controller\\item\:\:\$categItem\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/item.php
+
+		-
+			message: '#^Access to an undefined property controller\\item\:\:\$dptItem\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/item.php
+
+		-
+			message: '#^Call to an undefined static method model\\Annonce\:\:find\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 6
+			path: controller/item.php
+
+		-
+			message: '#^Call to an undefined static method model\\Annonceur\:\:find\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 3
+			path: controller/item.php
+
+		-
+			message: '#^Call to an undefined static method model\\Categorie\:\:find\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 2
+			path: controller/item.php
+
+		-
+			message: '#^Call to an undefined static method model\\Departement\:\:find\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 2
+			path: controller/item.php
+
+		-
+			message: '#^Call to an undefined static method model\\Photo\:\:where\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 2
+			path: controller/item.php
+
+		-
+			message: '#^Access to an undefined property controller\\viewAnnonceur\:\:\$annonceur\.$#'
+			identifier: property.notFound
+			count: 1
+			path: controller/viewAnnonceur.php
+
+		-
+			message: '#^Call to an undefined static method model\\Annonce\:\:where\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/viewAnnonceur.php
+
+		-
+			message: '#^Call to an undefined static method model\\Annonceur\:\:find\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/viewAnnonceur.php
+
+		-
+			message: '#^Call to an undefined static method model\\Photo\:\:select\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/viewAnnonceur.php
+
+		-
+			message: '#^Call to an undefined static method model\\Photo\:\:where\(\)\.$#'
+			identifier: staticMethod.notFound
+			count: 1
+			path: controller/viewAnnonceur.php
