@@ -114,23 +114,20 @@ use model\Categorie;
             "categItem" => $this->categItem));
     }
 
-    function edit($twig, $menu, $chemin, $allPostVars, $id){
-
-        date_default_timezone_set('Europe/Paris');
-
+    private function validateAndGetErrors($allPostVars) {
         /*
         * On récupère tous les champs du formulaire en supprimant
         * les caractères invisibles en début et fin de chaîne.
         */
-        $nom = trim($_POST['nom']);
-        $email = trim($_POST['email']);
-        $phone = trim($_POST['phone']);
-        $ville = trim($_POST['ville']);
-        $departement = trim($_POST['departement']);
-        $categorie = trim($_POST['categorie']);
-        $title = trim($_POST['title']);
-        $description = trim($_POST['description']);
-        $price = trim($_POST['price']);
+        $nom = trim($allPostVars['nom']);
+        $email = trim($allPostVars['email']);
+        $phone = trim($allPostVars['phone']);
+        $ville = trim($allPostVars['ville']);
+        $departement = trim($allPostVars['departement']);
+        $categorie = trim($allPostVars['categorie']);
+        $title = trim($allPostVars['title']);
+        $description = trim($allPostVars['description']);
+        $price = trim($allPostVars['price']);
 
 
         // Tableau d'erreurs personnalisées
@@ -176,7 +173,14 @@ use model\Categorie;
         }
 
         // On vire les cases vides
-        $errors = array_values(array_filter($errors));
+        return array_values(array_filter($errors));
+    }
+
+    function edit($twig, $menu, $chemin, $allPostVars, $id){
+
+        date_default_timezone_set('Europe/Paris');
+
+        $errors = $this->validateAndGetErrors($allPostVars);
 
         // S'il y a des erreurs on redirige vers la page d'erreur
         if (!empty($errors)) {
