@@ -8,7 +8,7 @@ use model\Departement;
 use model\Photo;
 use model\Categorie;
 
-#[AllowDynamicProperties] class item {
+#[AllowDynamicProperties] class ItemController {
     public function __construct(){
     }
 
@@ -90,8 +90,8 @@ use model\Categorie;
             "annonce" => $this->annonce));
     }
 
-    function modifyPost($twig, $menu, $chemin, $n, $cat, $dpt){
-        $this->annonce = Annonce::find($n);
+    function modifyPost($twig, $menu, $chemin, $id, $allPostVars, $cat, $dpt){
+        $this->annonce = Annonce::find($id);
         $this->annonceur = Annonceur::find($this->annonce->id_annonceur);
         $this->categItem = Categorie::find($this->annonce->id_categorie)->nom_categorie;
         $this->dptItem = Departement::find($this->annonce->id_departement)->nom_departement;

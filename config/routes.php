@@ -1,8 +1,7 @@
 <?php
 
-use controller\getCategorie;
 use controller\GetAnnonce;
-use controller\item;
+use controller\ItemController;
 use model\Annonce;
 use model\Annonceur;
 use model\Categorie;
@@ -10,29 +9,30 @@ use model\Departement;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use service\DepartmentService;
+use service\CategorieService;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
 return function(App $app, $twig, $menu, $chemin) {
-    $cat = new getCategorie();
-    $dpt = new DepartmentService();
+    $categorieService = new CategorieService();
+    $departmentService = new DepartmentService();
 
-    $app->get('/', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
+    $app->get('/', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
         $index = new GetAnnonce();
-        $index->displayAllAnnonce($twig, $menu, $chemin, $cat->getCategories());
+        $index->displayAllAnnonce($twig, $menu, $chemin, $categorieService->getCategories());
         return $response;
     });
 
-    $app->get('/item/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
+    $app->get('/item/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
         $n    = $args['n'];
-        $item = new item();
-        $item->afficherItem($twig, $menu, $chemin, $n, $cat->getCategories());
+        $item = new ItemController();
+        $item->afficherItem($twig, $menu, $chemin, $n, $categorieService->getCategories());
         return $response;
     });
 
-    $app->get('/add', function (Request $request, Response $response, $args) use ($twig, $app, $menu, $chemin, $cat, $dpt) {
+    $app->get('/add', function (Request $request, Response $response, $args) use ($twig, $app, $menu, $chemin, $categorieService, $departmentService) {
         $ajout = new controller\addItem();
-        $ajout->addItemView($twig, $menu, $chemin, $cat->getCategories(), $dpt->getAllDepartments());
+        $ajout->addItemView($twig, $menu, $chemin, $categorieService->getCategories(), $departmentService->getAllDepartments());
         return $response;
     });
 
@@ -45,70 +45,70 @@ return function(App $app, $twig, $menu, $chemin) {
 
     $app->get('/item/{id}/edit', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin) {
         $id   = $args['id'];
-        $item = new item();
+        $item = new ItemController();
         $item->modifyGet($twig, $menu, $chemin, $id);
         return $response;
     });
-    $app->post('/item/{id}/edit', function (Request $request, Response $response, $args) use ($twig, $app, $menu, $chemin, $cat, $dpt) {
+    $app->post('/item/{id}/edit', function (Request $request, Response $response, $args) use ($twig, $app, $menu, $chemin, $categorieService, $departmentService) {
         $id          = $args['id'];
         $allPostVars = $request->getParsedBody();
-        $item        = new item();
-        $item->modifyPost($twig, $menu, $chemin, $id, $allPostVars, $cat->getCategories(), $dpt->getAllDepartments());
+        $item        = new ItemController();
+        $item->modifyPost($twig, $menu, $chemin, $id, $allPostVars, $categorieService->getCategories(), $departmentService->getAllDepartments());
         return $response;
     });
 
     $app->map(['GET', 'POST'], '/item/{id}/confirm', function (Request $request, Response $response, $args) use ($twig, $app, $menu, $chemin) {
         $id          = $args['id'];
         $allPostVars = $request->getParsedBody();
-        $item        = new item();
+        $item        = new ItemController();
         $item->edit($twig, $menu, $chemin, $id, $allPostVars);
         return $response;
     });
 
-    $app->get('/search', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
+    $app->get('/search', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
         $s = new controller\Search();
-        $s->show($twig, $menu, $chemin, $cat->getCategories());
+        $s->show($twig, $menu, $chemin, $categorieService->getCategories());
         return $response;
     });
 
 
-    $app->post('/search', function (Request $request, Response $response) use ($app, $twig, $menu, $chemin, $cat) {
+    $app->post('/search', function (Request $request, Response $response) use ($app, $twig, $menu, $chemin, $categorieService) {
         $array = $request->getParsedBody();
         $s     = new controller\Search();
-        $s->research($array, $twig, $menu, $chemin, $cat->getCategories());
+        $s->research($array, $twig, $menu, $chemin, $categorieService->getCategories());
         return $response;
 
     });
 
-    $app->get('/annonceur/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
+    $app->get('/annonceur/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
         $n         = $args['n'];
         $annonceur = new controller\viewAnnonceur();
-        $annonceur->afficherAnnonceur($twig, $menu, $chemin, $n, $cat->getCategories());
+        $annonceur->afficherAnnonceur($twig, $menu, $chemin, $n, $categorieService->getCategories());
         return $response;
     });
 
     $app->get('/del/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin) {
         $n    = $args['n'];
-        $item = new controller\item();
+        $item = new controller\ItemController();
         $item->supprimerItemGet($twig, $menu, $chemin, $n);
         return $response;
     });
 
-    $app->post('/del/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
+    $app->post('/del/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
         $n    = $args['n'];
-        $item = new controller\item();
-        $item->supprimerItemPost($twig, $menu, $chemin, $n, $cat->getCategories());
+        $item = new controller\ItemController();
+        $item->supprimerItemPost($twig, $menu, $chemin, $n, $categorieService->getCategories());
         return $response;
     });
 
-    $app->get('/cat/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
+    $app->get('/cat/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
         $n         = $args['n'];
-        $categorie = new controller\getCategorie();
-        $categorie->displayCategorie($twig, $menu, $chemin, $cat->getCategories(), $n);
+        $categorie = new controller\GetCategorie();
+        $categorie->displayCategorie($twig, $menu, $chemin, $categorieService->getCategories(), $n);
         return $response;
     });
 
-    $app->get('/api(/)', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
+    $app->get('/api(/)', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
         $template = $twig->load('api.html.twig');
         $menu     = array(
             array(
@@ -124,7 +124,7 @@ return function(App $app, $twig, $menu, $chemin) {
         return $response;
     });
 
-    $app->group('/api', function (RouteCollectorProxy $group) use ($twig, $menu, $chemin, $cat) {
+    $app->group('/api', function (RouteCollectorProxy $group) use ($twig, $menu, $chemin, $categorieService) {
 
         $group->group('/annonce', function (RouteCollectorProxy $group) {
 
@@ -209,17 +209,17 @@ return function(App $app, $twig, $menu, $chemin) {
             });
         });
 
-        $group->get('/key', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
+        $group->get('/key', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
             $kg = new controller\KeyGenerator();
-            $kg->show($twig, $menu, $chemin, $cat->getCategories());
+            $kg->show($twig, $menu, $chemin, $categorieService->getCategories());
             return $response;
         });
 
-        $group->post('/key', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
+        $group->post('/key', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
             $nom = $_POST['nom'];
 
             $kg = new controller\KeyGenerator();
-            $kg->generateKey($twig, $menu, $chemin, $cat->getCategories(), $nom);
+            $kg->generateKey($twig, $menu, $chemin, $categorieService->getCategories(), $nom);
             return $response;
         });
     });

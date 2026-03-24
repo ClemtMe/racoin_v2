@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use controller\item;
+use controller\ItemController;
 use Twig\Environment;
 use Twig\TemplateWrapper;
 use Mockery as m;
@@ -50,7 +50,7 @@ class ItemTest extends TestCase
         });
 
         // 3. Create controller and call method
-        $itemController = new item();
+        $itemController = new ItemController();
         $itemController->afficherItem($twig, [], '', 1, []);
     }
 
@@ -70,7 +70,7 @@ class ItemTest extends TestCase
         });
 
         // 3. Create controller and call method
-        $itemController = new item();
+        $itemController = new ItemController();
         $itemController->supprimerItemGet($twig, [], '', 1);
     }
 
@@ -98,7 +98,7 @@ class ItemTest extends TestCase
         });
 
         // 3. Create controller and call method
-        $itemController = new item();
+        $itemController = new ItemController();
         $itemController->supprimerItemPost($twig, [], '', 1, []);
     }
 
@@ -118,7 +118,7 @@ class ItemTest extends TestCase
         });
 
         // 3. Create controller and call method
-        $itemController = new item();
+        $itemController = new ItemController();
         $itemController->modifyGet($twig, [], '', 1);
     }
 
@@ -162,7 +162,7 @@ class ItemTest extends TestCase
         });
 
         // 3. Create controller and call method
-        $itemController = new item();
+        $itemController = new ItemController();
         $itemController->modifyPost($twig, [], '', 1, [], [], []);
     }
 
@@ -204,7 +204,7 @@ class ItemTest extends TestCase
         $template->shouldReceive('render')->once();
 
         // 3. Create controller and call method
-        $itemController = new item();
+        $itemController = new ItemController();
         $itemController->edit($twig, [], '', $_POST, 1);
     }
 
@@ -234,7 +234,7 @@ class ItemTest extends TestCase
         });
 
         // 3. Create controller and call method
-        $itemController = new item();
+        $itemController = new ItemController();
         $itemController->edit($twig, [], '', $_POST, 1);
     }
 }
