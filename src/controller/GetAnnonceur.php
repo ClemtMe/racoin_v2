@@ -11,16 +11,16 @@ use model\Annonce;
 use model\Annonceur;
 use model\Photo;
 
-class viewAnnonceur {
+class GetAnnonceur {
     public function __construct(){
     }
-    function afficherAnnonceur($twig, $menu, $chemin, $n, $cat) {
-        $this->annonceur = annonceur::find($n);
+    function afficherAnnonceur($twig, $menu, $chemin, $id, $cat) {
+        $this->annonceur = annonceur::find($id);
         if(!isset($this->annonceur)){
             echo "404";
             return;
         }
-        $tmp = annonce::where('id_annonceur','=',$n)->get();
+        $tmp = annonce::where('id_annonceur','=',$id)->get();
 
         $annonces = [];
         foreach ($tmp as $a) {

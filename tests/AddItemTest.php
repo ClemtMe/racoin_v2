@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use controller\addItem;
+use controller\PostItem;
 use Twig\Environment;
 use Twig\TemplateWrapper;
 use Mockery as m;
@@ -24,7 +24,7 @@ class AddItemTest extends TestCase
         $template->shouldReceive('render')->once();
 
         // 3. Create controller and call method
-        $addItemController = new addItem();
+        $addItemController = new PostItem();
         $addItemController->addItemView($twig, [], '', [], []);
     }
 
@@ -61,7 +61,7 @@ class AddItemTest extends TestCase
         $template->shouldReceive('render')->once();
 
         // 3. Create controller and call method
-        $addItemController = new addItem();
+        $addItemController = new PostItem();
         $addItemController->addNewItem($twig, [], '', $_POST);
     }
 
@@ -92,7 +92,7 @@ class AddItemTest extends TestCase
         });
 
         // 3. Create controller and call method
-        $addItemController = new addItem();
+        $addItemController = new PostItem();
         $addItemController->addNewItem($twig, [], '', $_POST);
     }
 }

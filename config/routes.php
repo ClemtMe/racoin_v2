@@ -31,14 +31,14 @@ return function(App $app, $twig, $menu, $chemin) {
     });
 
     $app->get('/add', function (Request $request, Response $response, $args) use ($twig, $app, $menu, $chemin, $categorieService, $departmentService) {
-        $ajout = new controller\addItem();
+        $ajout = new controller\PostItem();
         $ajout->addItemView($twig, $menu, $chemin, $categorieService->getCategories(), $departmentService->getAllDepartments());
         return $response;
     });
 
     $app->post('/add', function (Request $request, Response $response, $args) use ($twig, $app, $menu, $chemin) {
         $allPostVars = $request->getParsedBody();
-        $ajout       = new controller\addItem();
+        $ajout       = new controller\PostItem();
         $ajout->addNewItem($twig, $menu, $chemin, $allPostVars);
         return $response;
     });
@@ -82,7 +82,7 @@ return function(App $app, $twig, $menu, $chemin) {
 
     $app->get('/annonceur/{n}', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $categorieService) {
         $n         = $args['n'];
-        $annonceur = new controller\viewAnnonceur();
+        $annonceur = new controller\GetAnnonceur();
         $annonceur->afficherAnnonceur($twig, $menu, $chemin, $n, $categorieService->getCategories());
         return $response;
     });
