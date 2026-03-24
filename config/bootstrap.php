@@ -1,5 +1,5 @@
 <?php
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use controller\getCategorie;
 use controller\getDepartment;
@@ -25,7 +25,7 @@ connection::createConn();
 $app = AppFactory::create();
 
 // Initialisation de Twig
-$loader = new FilesystemLoader(__DIR__ . '/template');
+$loader = new FilesystemLoader(__DIR__ . '/../template');
 $twig   = new Environment($loader);
 
 // Ajout d'un middleware pour le trailing slash
