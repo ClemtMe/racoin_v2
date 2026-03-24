@@ -8,6 +8,17 @@ class Annonce extends \Illuminate\Database\Eloquent\Model {
     public $timestamps = false;
     public $links = null;
 
+    protected $fillable = [
+        'id_categorie',
+        'id_annonceur',
+        'id_departement',
+        'prix',
+        'date',
+        'titre',
+        'description',
+        'ville',
+        'mdp',
+    ];
 
     public function annonceur()
     {

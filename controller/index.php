@@ -49,4 +49,9 @@ class index
         }
         $this->annonce = $annonce;
     }
+
+    public function getAnnonces()
+    {
+        return $this->annonce;
+    }
 }

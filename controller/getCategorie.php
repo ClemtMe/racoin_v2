@@ -9,6 +9,7 @@ use model\Annonceur;
 
 class getCategorie {
 
+    protected $annonce = array();
     protected $categories = array();
 
     public function getCategories() {
@@ -50,5 +51,10 @@ class getCategorie {
             "chemin" => $chemin,
             "categories" => $cat,
             "annonces" => $this->annonce));
+    }
+
+    public function getAnnonce()
+    {
+        return $this->annonce;
     }
 }

@@ -8,8 +8,8 @@ Les commandes suivantes permettent d'installer les dépendances et de construire
 cp config/config.ini.dist config/config.ini
 docker compose run --rm php composer install
 docker compose run --rm php php sql/initdb.php
-docker compose run node npm install
-docker compose run node npm run build
+docker compose run --rm node npm install
+docker compose run --rm node npm run build
 
 ```
 
