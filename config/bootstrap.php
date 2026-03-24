@@ -22,16 +22,24 @@ $twig   = new Environment($loader);
 $app->add(function (Request $request, $handler) {
     $uri  = $request->getUri();
     $path = $uri->getPath();
-    if ($path != '/' && str_ends_with($path, '/')) {
-        $uri = $uri->withPath(substr($path, 0, -1));
-        if ($request->getMethod() == 'GET') {
-            $response = new \Slim\Psr7\Response();
-            return $response->withHeader('Location', (string)$uri)->withStatus(301);
-        } else {
-            $request = $request->withUri($uri);
-        }
+
+    if ($path == '/') {
+        return $handler->handle($request);
     }
-    return $handler->handle($request);
+
+    if(str_ends_with($path, '/')){
+        $uri = $uri->withPath(substr($path, 0, -1));
+    }else{
+        return $handler->handle($request);
+    }
+
+    if ($request->getMethod() !== 'GET') {
+        $request = $request->withUri($uri);
+        return $handler->handle($request);
+    }
+
+    $response = new \Slim\Psr7\Response();
+    return $response->withHeader('Location', (string)$uri)->withStatus(301);
 });
 
 
