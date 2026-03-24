@@ -1,8 +1,7 @@
 <?php
 
 use controller\getCategorie;
-use controller\getDepartment;
-use controller\index;
+use controller\GetAnnonce;
 use controller\item;
 use model\Annonce;
 use model\Annonceur;
@@ -10,15 +9,16 @@ use model\Categorie;
 use model\Departement;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
+use service\DepartmentService;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
 return function(App $app, $twig, $menu, $chemin) {
     $cat = new getCategorie();
-    $dpt = new getDepartment();
+    $dpt = new DepartmentService();
 
     $app->get('/', function (Request $request, Response $response, $args) use ($twig, $menu, $chemin, $cat) {
-        $index = new index();
+        $index = new GetAnnonce();
         $index->displayAllAnnonce($twig, $menu, $chemin, $cat->getCategories());
         return $response;
     });

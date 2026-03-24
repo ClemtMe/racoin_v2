@@ -1,35 +1,14 @@
 <?php
 
-namespace controller;
+namespace service;
 
 use model\Annonce;
-use model\Photo;
 use model\Annonceur;
+use model\Photo;
 
-class index
+class AnnonceService
 {
-    protected $annonce = array();
-
-    public function displayAllAnnonce($twig, $menu, $chemin, $cat)
-    {
-        $template = $twig->load("index.html.twig");
-        $menu     = array(
-            array(
-                'href' => $chemin,
-                'text' => 'Acceuil'
-            ),
-        );
-
-        $this->getAll($chemin);
-        echo $template->render(array(
-            "breadcrumb" => $menu,
-            "chemin"     => $chemin,
-            "categories" => $cat,
-            "annonces"   => $this->annonce
-        ));
-    }
-
-    public function getAll($chemin)
+    public function getAllAnnonces($chemin): array
     {
         $tmp     = Annonce::with("Annonceur")->orderBy('id_annonce', 'desc')->take(12)->get();
         $annonce = [];
@@ -47,11 +26,6 @@ class index
                 ->first()->nom_annonceur;
             array_push($annonce, $t);
         }
-        $this->annonce = $annonce;
-    }
-
-    public function getAnnonces()
-    {
-        return $this->annonce;
+        return $annonce;
     }
 }

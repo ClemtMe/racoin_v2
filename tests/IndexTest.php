@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use controller\index;
+use controller\GetAnnonce;
 use Twig\Environment;
 use Twig\TemplateWrapper;
 use Mockery as m;
@@ -38,7 +38,7 @@ class IndexTest extends TestCase
         $annonceur->shouldReceive('select->where->first')->andReturn((object)['nom_annonceur' => 'Test Annonceur']);
 
         // 3. Create controller and call method
-        $indexController = new index();
+        $indexController = new GetAnnonce();
         $indexController->getAll('');
 
         // 4. Assertions
@@ -60,7 +60,7 @@ class IndexTest extends TestCase
         $template->shouldReceive('render')->once();
 
         // 3. Create controller and call method
-        $indexController = new index();
+        $indexController = new GetAnnonce();
         $indexController->displayAllAnnonce($twig, [], '', []);
     }
 }
